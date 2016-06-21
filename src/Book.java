@@ -1,7 +1,7 @@
 import java.time.LocalDate;
 
 public class Book {
-	//immutable fields
+	// immutable fields
 	private int index;
 	private String title;
 	private String author;
@@ -32,6 +32,11 @@ public class Book {
 	}
 
 	// getter methods
+	public int getIndex() {
+		return index;
+
+	}
+
 	public String getTitle() {
 		return title;
 	}
