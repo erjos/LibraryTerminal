@@ -70,7 +70,7 @@ public class Book {
 		this.due = due;
 	}
 
-	public void libraryCard(int libraryCard) {
+	public void setlibraryCard(int libraryCard) {
 		this.libraryCard = libraryCard;
 	}
 
