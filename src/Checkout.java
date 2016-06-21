@@ -32,7 +32,7 @@ public class Checkout {
 						b.setStatus("Checked Out");
 						LocalDate due = LocalDate.now();
 						b.setDue(due.plusDays(14));
-						b.setlibraryCard(libraryCard);
+						b.setLibraryCard(libraryCard);
 				System.out.println("You have successfully checked out \"" + b.getTitle() + "\" by " + b.getAuthor());
 				System.out.println("Your book is due on: " + b.getDue() + "\n" + "You will need your Library card to return your book. Don't forget your card number is: " + libraryCard);
 				

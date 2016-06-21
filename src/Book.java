@@ -57,7 +57,7 @@ public class Book {
 		return due;
 	}
 
-	public int libraryCard() {
+	public int getlibraryCard() {
 		return libraryCard;
 	}
 
@@ -70,7 +70,7 @@ public class Book {
 		this.due = due;
 	}
 
-	public void setlibraryCard(int libraryCard) {
+	public void setLibraryCard(int libraryCard) {
 		this.libraryCard = libraryCard;
 	}
 
