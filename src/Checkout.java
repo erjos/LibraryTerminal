@@ -42,4 +42,13 @@ public class Checkout {
 			}
 		}
 	}
+	public static void returnBook(ArrayList<Book> bookArrayList, int libraryCard){
+		for (int i = 0; i < bookArrayList.size(); i++) {
+			
+			Book b = bookArrayList.get(i);
+			if(b.getlibraryCard() == (libraryCard)) {
+				System.out.println("This book" + b.getTitle());
+			}
+		}
+	}
 }
