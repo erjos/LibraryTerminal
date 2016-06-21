@@ -51,13 +51,25 @@ public class BookObject {
 	}
 
 	public static void authorSearch(String author, ArrayList<Book> bookArrayList) {
+		System.out.format("%-12s%-30s%-30s%-12s", "INDEX #", "TITLE", "AUTHOR", "STATUS");
+		System.out.println("");
 		for (int i = 0; i < bookArrayList.size(); i++) {
 			Book b = bookArrayList.get(i);
 			if (b.getAuthor().contains(author)) {
-				System.out.println("Index #  Title \t\t\tAuthor \t\tStatus");
-				System.out.println(b.getIndex() + "\t" + b.getTitle() + "\t\t" + b.getAuthor() + "\t" + b.getStatus());
 
+				System.out.format("%-12d%-30s%-30s%-12s", b.getIndex(), b.getTitle(), b.getAuthor(), b.getStatus());
+				System.out.println("");
 			}
+		}
+	}
+
+	public static void returnAll(ArrayList<Book> bookArrayList) {
+		System.out.format("%-12s%-30s%-30s%-12s", "INDEX #", "TITLE", "AUTHOR", "STATUS");
+		System.out.println("");
+		for (int i = 0; i < bookArrayList.size(); i++) {
+			Book b = bookArrayList.get(i);
+			System.out.format("%-12d%-30s%-30s%-12s", b.getIndex(), b.getTitle(), b.getAuthor(), b.getStatus());
+			System.out.println("");
 		}
 	}
 
@@ -73,36 +85,31 @@ public class BookObject {
 		System.out.println("4. Historical Fiction");
 
 		int result = Validator.getInt(scan, "\r Please enter a choice:", 1, 4);
-		System.out.println("Index # Title \t\t\t\t\tAuthor \t\tStatus");
+		System.out.format("%-12s%-30s%-30s%-12s", "INDEX #", "TITLE", "AUTHOR", "STATUS");
+		System.out.println("");
 		for (int i = 0; i < bookArrayList.size(); i++) {
 			Book b = bookArrayList.get(i);
 			if (b.getSubject() == result) {
-				System.out
-						.println(b.getIndex() + "\t" + b.getTitle() + "\t\t\t" + b.getAuthor() + "\t" + b.getStatus());
+				System.out.format("%-12d%-30s%-30s%-12s", b.getIndex(), b.getTitle(), b.getAuthor(), b.getStatus());
+				System.out.println("");
 			}
 		}
 
-		// for (int i = 0; i < bookArrayList.size(); i++) {
-		//
-		// Book b = bookArrayList.get(i);
-		// if (b.getAuthor().contains(author)) {
-		// System.out.println("Index # Title \t\t\tAuthor \t\tStatus");
-		// System.out.println(b.getIndex() + "\t" + b.getTitle() + "\t\t" +
-		// b.getAuthor() + "\t" + b.getStatus());
-		//
-		// }
 	}
 
 	public static void titleSearch(String title, ArrayList<Book> bookArrayList) {
-
+		System.out.format("%-12s%-30s%-30s%-12s", "INDEX #", "TITLE", "AUTHOR", "STATUS");
+		System.out.println("");
 		for (int i = 0; i < bookArrayList.size(); i++) {
 
 			Book b = bookArrayList.get(i);
-			if (b.getAuthor().contains(title)) {
-				System.out.println("Index #  Title \t\t\tAuthor \t\tStatus");
-				System.out.println(b.getIndex() + "\t" + b.getTitle() + "\t\t" + b.getAuthor() + "\t" + b.getStatus());
-
+			if (b.getTitle().contains(title)) {
+				System.out.format("%-12d%-30s%-30s%-12s", b.getIndex(), b.getTitle(), b.getAuthor(), b.getStatus());
+				System.out.println("");
 			}
+			// else
+			// System.out.println("Sorry your entry returned zero results.");
+			// break;
 		}
 	}
 
@@ -111,7 +118,7 @@ public class BookObject {
 
 		ArrayList<Book> bookArrayList = instatiateArray();
 
-		subjectSearch(scan, bookArrayList);
+		// authorSearch("Clarke", bookArrayList);
 		;
 	}
 
