@@ -2,6 +2,7 @@ import java.time.LocalDate;
 
 public class Book {
 	//immutable fields
+	private int index;
 	private String title;
 	private String author;
 	private int subject;
