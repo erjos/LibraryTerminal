@@ -3,6 +3,7 @@ import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Scanner;
 
 public class BookObject {
 
@@ -37,30 +38,20 @@ public class BookObject {
 				Book book = new Book(indexID, ar[1], ar[2], sub, ar[4], bID); // creating
 																				// obj
 
-				// Then it writes
-				// System.out.println("This book was entered:" +
-				// book.getTitle()); // Then
-				// it
-				// writes
 				bookArrayList.add(book);
 				line = in.readLine(); // Then it reads next line, if line is not
 										// blank
 			}
-
 			in.close();
-
 		} catch (IOException e) {
 			// required importation of IOException Class
 			System.out.println(e);
-
 		}
 		return bookArrayList;
 	}
 
 	public static void authorSearch(String author, ArrayList<Book> bookArrayList) {
-
 		for (int i = 0; i < bookArrayList.size(); i++) {
-
 			Book b = bookArrayList.get(i);
 			if (b.getAuthor().contains(author)) {
 				System.out.println("Index #  Title \t\t\tAuthor \t\tStatus");
@@ -74,36 +65,32 @@ public class BookObject {
 	// 2 = Mystery/Thriller
 	// 3 = SciFi/Fantasy/Horror
 	// 4 = Historical Fiction
-	public static void subjectSearch(Scanner, scan String author, ArrayList<Book> bookArrayList) {
+	public static void subjectSearch(Scanner scan, ArrayList<Book> bookArrayList) {
 		System.out.println("The subject options are:");
 		System.out.println("1. History");
 		System.out.println("2. Mystery/Thriller");
-		System.out.println("3.  SciFi/Fantasy/Horror");
+		System.out.println("3. SciFi/Fantasy/Horror");
 		System.out.println("4. Historical Fiction");
-		System.out.println("Pease enter a number:");
-		
-		switch (choice) {
-		case 1: //display all books
-			break;
-		case 2: // ask user to search by Author (enter author keyword)
-			break;
-		case 3: // ask user to search by title (enter title keyword)
-			break;
-		case 4: // ask user to return a book
-			break;
-		default: //maybe make it say "invalid entry" and print out a list of the books
-		}
-		
-		System.out.println("The subject options are:");
+
+		int result = Validator.getInt(scan, "\r Please enter a choice:", 1, 4);
+		System.out.println("Index # Title \t\t\t\t\tAuthor \t\tStatus");
 		for (int i = 0; i < bookArrayList.size(); i++) {
-
 			Book b = bookArrayList.get(i);
-			if (b.getAuthor().contains(author)) {
-				System.out.println("Index #  Title \t\t\tAuthor \t\tStatus");
-				System.out.println(b.getIndex() + "\t" + b.getTitle() + "\t\t" + b.getAuthor() + "\t" + b.getStatus());
-
+			if (b.getSubject() == result) {
+				System.out
+						.println(b.getIndex() + "\t" + b.getTitle() + "\t\t\t" + b.getAuthor() + "\t" + b.getStatus());
 			}
 		}
+
+		// for (int i = 0; i < bookArrayList.size(); i++) {
+		//
+		// Book b = bookArrayList.get(i);
+		// if (b.getAuthor().contains(author)) {
+		// System.out.println("Index # Title \t\t\tAuthor \t\tStatus");
+		// System.out.println(b.getIndex() + "\t" + b.getTitle() + "\t\t" +
+		// b.getAuthor() + "\t" + b.getStatus());
+		//
+		// }
 	}
 
 	public static void titleSearch(String title, ArrayList<Book> bookArrayList) {
@@ -120,29 +107,12 @@ public class BookObject {
 	}
 
 	public static void main(String[] args) throws IOException {
+		Scanner scan = new Scanner(System.in);
 
 		ArrayList<Book> bookArrayList = instatiateArray();
 
-		authorSearch("Child", bookArrayList);
+		subjectSearch(scan, bookArrayList);
+		;
 	}
-	//
-	//
 
 }
-
-// for (int i = 0; i < bookArrayList.size(); i++) {
-//
-// Book b = bookArrayList.get(i);
-// // (Book b : bookArrayList) {
-//
-// // System.out.println("Title " + b.getTitle());
-// if (b.getTitle().contains("The")) {
-//
-// System.out.print("Number " + a + "\t");
-// System.out.println(
-// "This book" + b.getTitle() + "subject number is " + b.getSubject() + "
-// has the in it");
-// a++;
-// ArrayList<Book> temporaryBookArrayList = new ArrayList<Book>();
-// temporaryBookArrayList.add(b);
-// // System.out.println(bookArrayList());
