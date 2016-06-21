@@ -1,12 +1,18 @@
 import java.io.BufferedReader;
+import java.io.BufferedWriter;
 import java.io.File;
+import java.io.FileOutputStream;
 import java.io.FileReader;
+import java.io.FileWriter;
 import java.io.IOException;
+import java.io.ObjectOutputStream;
+import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.Scanner;
 
 public class BookObject {
 
+	// The Main Method to Populate the Array
 	public static ArrayList<Book> instatiateArray() {
 		ArrayList<Book> bookArrayList = new ArrayList<Book>(); // Create Array
 
@@ -37,7 +43,6 @@ public class BookObject {
 				int indexID = Integer.parseInt(index);
 				Book book = new Book(indexID, ar[1], ar[2], sub, ar[4], bID); // creating
 																				// obj
-
 				bookArrayList.add(book);
 				line = in.readLine(); // Then it reads next line, if line is not
 										// blank
@@ -50,19 +55,47 @@ public class BookObject {
 		return bookArrayList;
 	}
 
+	public static void writeCSV(ArrayList<Book> bookArrayList) throws Exception {
+
+		// create a File class object and give the file the name employees.csv
+		java.io.File bookCSV = new java.io.File("BookDataBase1.csv");
+
+		// Create a Printwriter text output stream and link it to the CSV File
+		java.io.PrintWriter outfile = new java.io.PrintWriter(bookCSV);
+
+		// Iterate the elements actually being used
+		for (int i = 0; i < bookArrayList.size(); i++) {
+			String record = bookArrayList.get(i).getIndex() + "," + bookArrayList.get(i).getTitle() + ","
+					+ bookArrayList.get(i).getAuthor() + "," + bookArrayList.get(i).getSubject() + ","
+					+ bookArrayList.get(i).getStatus() + "," + bookArrayList.get(i).getlibraryCard() + "\r\n";
+			System.out.println(record);
+			outfile.write(record);
+
+		} // end for
+
+		outfile.close();
+	}
+
+	// Author Search
 	public static void authorSearch(String author, ArrayList<Book> bookArrayList) {
 		System.out.format("%-12s%-30s%-30s%-12s", "INDEX #", "TITLE", "AUTHOR", "STATUS");
 		System.out.println("");
+		int repeat = 0;
 		for (int i = 0; i < bookArrayList.size(); i++) {
 			Book b = bookArrayList.get(i);
 			if (b.getAuthor().contains(author)) {
 
 				System.out.format("%-12d%-30s%-30s%-12s", b.getIndex(), b.getTitle(), b.getAuthor(), b.getStatus());
 				System.out.println("");
+				repeat = 1;
 			}
+		}
+		if (repeat == 0) {
+			System.out.println("\rSorry your entry returned zero results.");
 		}
 	}
 
+	// Return All
 	public static void returnAll(ArrayList<Book> bookArrayList) {
 		System.out.format("%-12s%-30s%-30s%-12s", "INDEX #", "TITLE", "AUTHOR", "STATUS");
 		System.out.println("");
@@ -97,29 +130,48 @@ public class BookObject {
 
 	}
 
+	// Title Search
 	public static void titleSearch(String title, ArrayList<Book> bookArrayList) {
 		System.out.format("%-12s%-30s%-30s%-12s", "INDEX #", "TITLE", "AUTHOR", "STATUS");
 		System.out.println("");
+		int repeat = 0;
 		for (int i = 0; i < bookArrayList.size(); i++) {
-
 			Book b = bookArrayList.get(i);
 			if (b.getTitle().contains(title)) {
 				System.out.format("%-12d%-30s%-30s%-12s", b.getIndex(), b.getTitle(), b.getAuthor(), b.getStatus());
 				System.out.println("");
+				repeat = 1;
 			}
-			// else
-			// System.out.println("Sorry your entry returned zero results.");
-			// break;
+		}
+		if (repeat == 0) {
+			System.out.println("\rSorry your entry returned zero results.");
 		}
 	}
 
-	public static void main(String[] args) throws IOException {
+	// Testing area
+	public static void main(String[] args) throws Exception {
 		Scanner scan = new Scanner(System.in);
 
-		ArrayList<Book> bookArrayList = instatiateArray();
+		// Array
+		// ArrayList<Book> bookArrayList = null;
 
+		ArrayList<Book> bookArrayList = instatiateArray();
+		// returnAll(bookArrayList);
+		// authorSearch("boy", bookArrayList);
 		// authorSearch("Clarke", bookArrayList);
-		;
+		// titleSearch("Clarke", bookArrayList);
+		// titleSearch("the", bookArrayList);
+		// bookArrayList.get(1).setStatus("cheese");
+		// writeCSV(bookArrayList);
+		// String record = bookArrayList.get(1).getIndex() + "," +
+		// bookArrayList.get(1).getTitle() + ","
+		// + bookArrayList.get(1).getAuthor() + "," +
+		// bookArrayList.get(1).getSubject() + ","
+		// + bookArrayList.get(1).getStatus() + "," +
+		// bookArrayList.get(1).getlibraryCard() + "\n";
+		// System.out.println(record);
+		System.out.println(bookArrayList.get(1).getStatus());
+
 	}
 
 }
