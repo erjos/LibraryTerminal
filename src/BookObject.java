@@ -11,7 +11,7 @@ public class BookObject {
 
 		try {
 			String filePath = new File("BookDataBase1").getAbsolutePath();
-			System.out.println(filePath);
+			// System.out.println(filePath);
 
 			FileReader r = new FileReader("BookDataBase1.csv");
 			// required importation of FileReader
@@ -28,9 +28,9 @@ public class BookObject {
 				String[] ar = line.split(",");
 				// can not seem to make the subject number
 				// which comes in as a string into an int to go into object
-				// String subj = ar[3];
-				// int sub = Integer.parseInt(subj);
-				Book book = new Book(ar[1], ar[2], 2, line); // creating obj
+				String subj = ar[3];
+				int sub = Integer.parseInt(subj);
+				Book book = new Book(ar[1], ar[2], sub, line); // creating obj
 
 				// Then it writes
 				// System.out.println("This book was entered:" +
@@ -47,11 +47,19 @@ public class BookObject {
 			System.out.println(e);
 
 		}
-		for (Book b : bookArrayList) {
+		int a = 1;
+		for (int i = 0; i < bookArrayList.size(); i++) {
 
-			System.out.println("Title " + b.getTitle());
-			if (b.getTitle().contains("the")) {
-				System.out.println("This book " + b.getTitle() + " has the in it");
+			Book b = bookArrayList.get(i);
+			// (Book b : bookArrayList) {
+
+			// System.out.println("Title " + b.getTitle());
+			if (b.getTitle().contains("The")) {
+
+				System.out.print("Number " + a + "\t");
+				System.out.println(
+						"This book" + b.getTitle() + "subject number is  " + b.getSubject() + " has the in it");
+				a++;
 			}
 
 		}
