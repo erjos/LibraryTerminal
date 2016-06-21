@@ -16,14 +16,16 @@ public class Book {
 	// Why did we go with status when a
 	// filled in or null borrower ID would work?
 	private LocalDate due;
-	private int borrowID;
+	private int libraryCard;
 
 	// constructor
-	public Book(String title, String author, int subject, String status) {
+	public Book(int index, String title, String author, int subject, String status, int libraryCard) {
+		this.index = index;
 		this.title = title;
 		this.author = author;
 		this.subject = subject;
-		this.status = status; //
+		this.status = status;
+		this.libraryCard = libraryCard;
 		// don't we need to have void fields for borrower and due date?
 		// The data file will have or store records of who has checked out what
 		// book.
@@ -50,8 +52,8 @@ public class Book {
 		return due;
 	}
 
-	public int getBorrowID() {
-		return borrowID;
+	public int libraryCard() {
+		return libraryCard;
 	}
 
 	// setter methods
@@ -63,8 +65,8 @@ public class Book {
 		this.due = due;
 	}
 
-	public void setBorrowID(int borrowID) {
-		this.borrowID = borrowID;
+	public void libraryCard(int libraryCard) {
+		this.libraryCard = libraryCard;
 	}
 
 }
