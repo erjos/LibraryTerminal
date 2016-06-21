@@ -33,8 +33,8 @@ public class Checkout {
 						LocalDate due = LocalDate.now();
 						b.setDue(due.plusDays(14));
 						b.setlibraryCard(libraryCard);
-				System.out.println("You have successfully checked out " + b.getTitle() + " by " + b.getAuthor());
-				System.out.println("Your book is due on: " + b.getDue());
+				System.out.println("You have successfully checked out \"" + b.getTitle() + "\" by " + b.getAuthor());
+				System.out.println("Your book is due on: " + b.getDue() + "\n" + "You will need your Library card to return your book. Don't forget your card number is: " + libraryCard);
 				
 				} else {
 					System.out.println("I'm sorry, this book is unavailable for checkout at this time!");
