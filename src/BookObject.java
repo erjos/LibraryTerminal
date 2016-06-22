@@ -158,7 +158,8 @@ public class BookObject {
 		ArrayList<Book> bookArrayList = instatiateArray();
 		// returnAll(bookArrayList);
 		// authorSearch("boy", bookArrayList);
-		// authorSearch("Clarke", bookArrayList);
+
+		authorSearch("Clarke", bookArrayList);
 		// titleSearch("Clarke", bookArrayList);
 		// titleSearch("the", bookArrayList);
 		// bookArrayList.get(1).setStatus("cheese");
@@ -170,7 +171,7 @@ public class BookObject {
 		// + bookArrayList.get(1).getStatus() + "," +
 		// bookArrayList.get(1).getlibraryCard() + "\n";
 		// System.out.println(record);
-		System.out.println(bookArrayList.get(1).getStatus());
+		// System.out.println(bookArrayList.get(1).getStatus());
 
 	}
 
