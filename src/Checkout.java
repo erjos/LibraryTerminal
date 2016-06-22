@@ -5,7 +5,9 @@ import java.util.Scanner;
 public class Checkout {
 	
 	//method to checkout a book and change fields
-	public static void checkoutBook(int index, ArrayList<Book> bookArrayList, int libraryCard) {
+	public static void checkoutBook(ArrayList<Book> bookArrayList, int libraryCard, Scanner input) {
+		System.out.print("Which book would you like to check out? (please enter the Index number): ");
+		int index = input.nextInt();
 		
 		for (int i = 0; i < bookArrayList.size(); i++) {
 

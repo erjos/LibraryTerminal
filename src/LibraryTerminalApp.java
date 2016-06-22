@@ -35,28 +35,18 @@ public class LibraryTerminalApp {
 
 			// if else statement that calls different search methods and lets the user checkout
 			if (choice == 1) {
-				BookObject.returnAll(bookList);
-				System.out.print("Which book would you like to check out? (please enter the ID number) ");
-				chooseBook = input.nextInt();
+				BookObject.returnAll(bookList, libraryCard, input);
 				
-				Checkout.checkoutBook(chooseBook, bookList, libraryCard);
 			} 
 			
 			else if (choice == 2) {
-				System.out.print("Please enter an author: ");
-				input.nextLine();
-				String author = input.nextLine();
-				
-				BookObject.authorSearch(author, bookList, chooseBook, input, libraryCard);
+				BookObject.authorSearch(bookList, input, libraryCard);
 				
 			} 
 			
 			else if (choice == 3) {
-				System.out.print("Please enter a title: ");
-				input.nextLine();
-				String title = input.nextLine();
-				
-				BookObject.titleSearch(title, bookList, chooseBook, input, libraryCard);
+	
+				BookObject.titleSearch(bookList, chooseBook, input, libraryCard);
 
 			} 
 			
