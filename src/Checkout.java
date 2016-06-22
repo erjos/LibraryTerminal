@@ -70,7 +70,7 @@ public class Checkout {
 				}
 			}else{
 				System.out.println("Invalid Entry!");
-				displayBook(bookArrayList, input);
+				displayBook(bookArrayList, input); //NEED TO FIX - add a separate validator
 			}
 		}
 		
@@ -90,6 +90,7 @@ public class Checkout {
 			if(r.getIndex() == index){
 				r.setStatus("Available");
 				r.setLibraryCard(0);
+				r.setDue(null);
 				System.out.println("You have successfully returned: " + r.getTitle());
 			}
 		}

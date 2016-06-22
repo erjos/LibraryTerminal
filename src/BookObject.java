@@ -97,7 +97,7 @@ public class BookObject {
 			System.out.println("\rSorry your entry returned zero results." + "\n" + "To view a list of our selections, press \"enter\" ");
 			input.nextLine();
 			returnAll(bookArrayList, libraryCard, input);
-			Checkout.checkoutBook(bookArrayList, libraryCard, input);
+			//Checkout.checkoutBook(bookArrayList, libraryCard, input);
 		}else{
 			Checkout.checkoutBook(bookArrayList, libraryCard, input);
 		}
@@ -163,7 +163,7 @@ public class BookObject {
 			System.out.println("\rSorry your entry returned zero results." + "\n" + "To view a list of our selections, press \"enter\" ");
 			input.nextLine();
 			returnAll(bookArrayList, libraryCard, input);
-			Checkout.checkoutBook(bookArrayList, libraryCard, input);
+			//Checkout.checkoutBook(bookArrayList, libraryCard, input);
 		}else{
 			Checkout.checkoutBook(bookArrayList, libraryCard, input);
 		}

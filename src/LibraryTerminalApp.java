@@ -36,24 +36,18 @@ public class LibraryTerminalApp {
 			// if else statement that calls different search methods and lets the user checkout
 			if (choice == 1) {
 				BookObject.returnAll(bookList, libraryCard, input);
-				
 			} 
-			
 			else if (choice == 2) {
 				BookObject.authorSearch(bookList, input, libraryCard);
-				
 			} 
-			
 			else if (choice == 3) {
 	
 				BookObject.titleSearch(bookList, chooseBook, input, libraryCard);
-
 			} 
 			
 			else if (choice == 4){
 				BookObject.subjectSearch(input, bookList, chooseBook, libraryCard);
 			}
-			
 			else {
 				System.out.println("Sorry! That is not a valid browsing option...");
 			}
@@ -68,7 +62,7 @@ public class LibraryTerminalApp {
 		
 			//method that writes the changes back into the BookDataBase1.csv
 			BookObject.writeCSV(bookList);
-			System.out.println("Thank you for visiting our library!");
+			System.out.println("Thank you for visiting the Grant Chirpus Memorial Library!");
 		}
 	
 	}
