@@ -42,13 +42,65 @@ public class Checkout {
 			}
 		}
 	}
-	public static void returnBook(ArrayList<Book> bookArrayList, int libraryCard){
+	
+	public static void displayBook(ArrayList<Book> bookArrayList, int libraryCard, Scanner input){
+		int count = 0;
+		
+		//how many books does the user have checked out
 		for (int i = 0; i < bookArrayList.size(); i++) {
-			
 			Book b = bookArrayList.get(i);
 			if(b.getlibraryCard() == (libraryCard)) {
-				System.out.println("This book" + b.getTitle());
+				count++;
 			}
+		}
+		
+		//if the user has any books checked out
+		if(count > 0){
+			System.out.println("You have the following books checked out under your name: ");
+			for (int i = 0; i < bookArrayList.size(); i++) {
+				Book b = bookArrayList.get(i);
+				if(b.getlibraryCard() == (libraryCard)) {
+					System.out.println(b.getTitle() + " Number: " + b.getIndex());
+				}
+			}
+			//prompt the user to return a book
+			System.out.println("Enter the number of the book you would like to return: ");
+			int returnIndex = input.nextInt();
+			
+			//call method to set book status and card number back to default
+			Checkout.returnBook(bookArrayList, libraryCard, returnIndex);
+			System.out.println("Would you like to return another book? (Y/N) ");
+			input.nextLine();
+			String anotherBook = input.nextLine();
+			if(anotherBook.equalsIgnoreCase("y")){
+				//RECURSION!!!!!
+				displayBook(bookArrayList, libraryCard, input);
+			}
+		}
+		
+		//if the user does not have any books checked out or they enter an invalid card number
+		if(count == 0){
+			System.out.println("Sorry there are no books under that Library card!");
+		}
+	}
+	
+	public static void returnBook(ArrayList<Book> bookArrayList, int libraryCard, int index){
+		
+		for (int i = 0; i < bookArrayList.size(); i++){
+			
+			Book r = bookArrayList.get(i);
+			if(r.getIndex() == index){
+				r.setStatus("Available");
+				r.setLibraryCard(0);
+				System.out.println("You have successfully returned: " + r.getTitle());
+			}
+		}
+	}
+	
+	public static void checkBooks(ArrayList<Book> bookArrayList, int libraryCard){
+			for (int i = 0; i < bookArrayList.size(); i++) {
+			
+			Book b = bookArrayList.get(i);
 		}
 	}
 }
