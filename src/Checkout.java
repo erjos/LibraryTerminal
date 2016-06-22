@@ -67,13 +67,21 @@ public class Checkout {
 			System.out.println("Enter the number of the book you would like to return: ");
 			int returnIndex = input.nextInt();
 			
-			//call method to set book status and card number back to default
-			Checkout.returnBook(bookArrayList, libraryCard, returnIndex);
-			System.out.println("Would you like to return another book? (Y/N) ");
-			input.nextLine();
-			String anotherBook = input.nextLine();
-			if(anotherBook.equalsIgnoreCase("y")){
-				//RECURSION!!!!!
+			//go through array list, find selected book, get library card and verify that it matches the users
+			
+			if ((bookArrayList.get(returnIndex-1)).getlibraryCard() == libraryCard) {
+				//call method to set book status and card number back to default
+				Checkout.returnBook(bookArrayList, libraryCard, returnIndex);
+				
+				System.out.println("Would you like to return another book? (Y/N) ");
+				input.nextLine();
+				String anotherBook = input.nextLine();
+				if(anotherBook.equalsIgnoreCase("y")){
+					//RECURSION!!!!!
+					displayBook(bookArrayList, libraryCard, input);
+				}
+			}else{
+				System.out.println("Invalid Entry!");
 				displayBook(bookArrayList, libraryCard, input);
 			}
 		}
