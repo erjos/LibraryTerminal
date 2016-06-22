@@ -78,6 +78,7 @@ public class LibraryTerminalApp {
 		
 			//method that writes the changes back into the BookDataBase1.csv
 			BookObject.writeCSV(bookList);
+			System.out.println("Thank you for visiting our library!");
 		}
 	
 	}
