@@ -44,11 +44,11 @@ public class Checkout {
 			for (int i = 0; i < bookArrayList.size(); i++) {
 				Book b = bookArrayList.get(i);
 				if(b.getlibraryCard() == (libraryCard)) {
-					System.out.println(b.getTitle() + " Number: " + b.getIndex());
+					System.out.println("\"" + b.getTitle() + "\"" + "\n" + "Number: " + b.getIndex());
 				}
 			}
 			//prompt the user to return a book
-			System.out.println("Enter the number of the book you would like to return: ");
+			System.out.print("Enter the number of the book you would like to return: ");
 			int returnIndex = input.nextInt();
 			
 			//go through array list, find selected book, get library card and verify that it matches the users
@@ -57,7 +57,7 @@ public class Checkout {
 				//call method to set book status and card number back to default
 				Checkout.returnBook(bookArrayList, libraryCard, returnIndex);
 				
-				System.out.println("Would you like to return another book? (Y/N) ");
+				System.out.print("Would you like to return another book? (Y/N) ");
 				input.nextLine();
 				String anotherBook = input.nextLine();
 				if(anotherBook.equalsIgnoreCase("y")){
