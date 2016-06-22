@@ -3,25 +3,8 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Checkout {
-	public static void main(String[] args) {
-		Scanner input = new Scanner(System.in);
-		//First prompt should ask, do you have a library card - if so "swipe" now: enter library card ID
-		//If not, generates a new code and stores the user and name in the arrayList for users
-		//our main needs to generate this when it starts running to call it later
-		//it's ok if this is different everytime the user comes to the library we can fix that if we build out further
-		int libraryCard = (int)(Math.random()*1000+1);
-		System.out.println("your library card number is: " + libraryCard);
-
-		System.out.println("Which book would you like to check out? (please enter the ID number) ");
-		int chooseBook = input.nextInt();
-		
-		ArrayList<Book> newList = BookObject.instatiateArray();
-		
-		checkoutBook(chooseBook, newList, libraryCard);
-		
-	}
 	
-	
+	//method to checkout a book and change fields
 	public static void checkoutBook(int index, ArrayList<Book> bookArrayList, int libraryCard) {
 		
 		for (int i = 0; i < bookArrayList.size(); i++) {
@@ -43,6 +26,7 @@ public class Checkout {
 		}
 	}
 	
+	//method to display a list of books checked out and return a book if applicable (calls next method and uses recursion)
 	public static void displayBook(ArrayList<Book> bookArrayList, int libraryCard, Scanner input){
 		int count = 0;
 		
@@ -92,6 +76,7 @@ public class Checkout {
 		}
 	}
 	
+	//method that is called in the previous method to reset status and fields of the returned book
 	public static void returnBook(ArrayList<Book> bookArrayList, int libraryCard, int index){
 		
 		for (int i = 0; i < bookArrayList.size(); i++){
@@ -102,13 +87,6 @@ public class Checkout {
 				r.setLibraryCard(0);
 				System.out.println("You have successfully returned: " + r.getTitle());
 			}
-		}
-	}
-	
-	public static void checkBooks(ArrayList<Book> bookArrayList, int libraryCard){
-			for (int i = 0; i < bookArrayList.size(); i++) {
-			
-			Book b = bookArrayList.get(i);
 		}
 	}
 }
