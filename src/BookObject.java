@@ -68,7 +68,7 @@ public class BookObject {
 			String record = bookArrayList.get(i).getIndex() + "," + bookArrayList.get(i).getTitle() + ","
 					+ bookArrayList.get(i).getAuthor() + "," + bookArrayList.get(i).getSubject() + ","
 					+ bookArrayList.get(i).getStatus() + "," + bookArrayList.get(i).getlibraryCard() + "\r\n";
-			//System.out.println(record);
+			// System.out.println(record);
 			outfile.write(record);
 
 		} // end for
@@ -77,7 +77,8 @@ public class BookObject {
 	}
 
 	// Author Search
-	public static void authorSearch(String author, ArrayList<Book> bookArrayList, int chooseBook, Scanner input, int libraryCard) {
+	public static void authorSearch(String author, ArrayList<Book> bookArrayList, int chooseBook, Scanner input,
+			int libraryCard) {
 		System.out.format("%-12s%-30s%-30s%-12s", "INDEX #", "TITLE", "AUTHOR", "STATUS");
 		System.out.println("");
 		int repeat = 0;
@@ -92,7 +93,7 @@ public class BookObject {
 		}
 		if (repeat == 0) {
 			System.out.println("\rSorry your entry returned zero results.");
-		}else{
+		} else {
 			System.out.print("Which book would you like to check out? (please enter the ID number) ");
 			chooseBook = input.nextInt();
 			Checkout.checkoutBook(chooseBook, bookArrayList, libraryCard);
@@ -121,7 +122,7 @@ public class BookObject {
 		System.out.println("3. SciFi/Fantasy/Horror");
 		System.out.println("4. Historical Fiction");
 
-		int result = Validator.getInt(input, "\r Please enter a choice: ", 1, 4);
+		int result = Validator.getInt(input, "\r Please enter a choice: ", 1, 4, "Please enter 1-4.");
 		System.out.format("%-12s%-30s%-30s%-12s", "INDEX #", "TITLE", "AUTHOR", "STATUS");
 		System.out.println("");
 		for (int i = 0; i < bookArrayList.size(); i++) {
@@ -138,7 +139,8 @@ public class BookObject {
 	}
 
 	// Title Search
-	public static void titleSearch(String title, ArrayList<Book> bookArrayList, int chooseBook, Scanner input, int libraryCard) {
+	public static void titleSearch(String title, ArrayList<Book> bookArrayList, int chooseBook, Scanner input,
+			int libraryCard) {
 		System.out.format("%-12s%-30s%-30s%-12s", "INDEX #", "TITLE", "AUTHOR", "STATUS");
 		System.out.println("");
 		int repeat = 0;
@@ -152,7 +154,7 @@ public class BookObject {
 		}
 		if (repeat == 0) {
 			System.out.println("\rSorry your entry returned zero results.");
-		}else{
+		} else {
 			System.out.print("Which book would you like to check out? (please enter the ID number) ");
 			chooseBook = input.nextInt();
 			Checkout.checkoutBook(chooseBook, bookArrayList, libraryCard);
