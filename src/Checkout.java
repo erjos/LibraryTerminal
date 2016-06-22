@@ -27,8 +27,10 @@ public class Checkout {
 	}
 	
 	//method to display a list of books checked out and return a book if applicable (calls next method and uses recursion)
-	public static void displayBook(ArrayList<Book> bookArrayList, int libraryCard, Scanner input){
+	public static void displayBook(ArrayList<Book> bookArrayList, Scanner input){
 		int count = 0;
+		System.out.print("Please enter your library card number: ");
+		int libraryCard = input.nextInt();
 		
 		//how many books does the user have checked out
 		for (int i = 0; i < bookArrayList.size(); i++) {
@@ -62,17 +64,18 @@ public class Checkout {
 				String anotherBook = input.nextLine();
 				if(anotherBook.equalsIgnoreCase("y")){
 					//RECURSION!!!!!
-					displayBook(bookArrayList, libraryCard, input);
+					displayBook(bookArrayList, input);
 				}
 			}else{
 				System.out.println("Invalid Entry!");
-				displayBook(bookArrayList, libraryCard, input);
+				displayBook(bookArrayList, input);
 			}
 		}
 		
 		//if the user does not have any books checked out or they enter an invalid card number
 		if(count == 0){
 			System.out.println("Sorry there are no books under that Library card!");
+			displayBook(bookArrayList, input);
 		}
 	}
 	

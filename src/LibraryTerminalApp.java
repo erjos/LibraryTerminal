@@ -12,6 +12,7 @@ public class LibraryTerminalApp {
 		// temporary Library card creation
 		int libraryCard = (int) (Math.random() * 1000 + 1);
 		System.out.println("your library card number is: " + libraryCard);
+		
 		// create scanner object
 		Scanner input = new Scanner(System.in);
 
@@ -32,12 +33,12 @@ public class LibraryTerminalApp {
 
 			choice = input.nextInt();
 
-			// if else statement
-			
+			// if else statement that calls different search methods and lets the user checkout
 			if (choice == 1) {
 				BookObject.returnAll(bookList);
 				System.out.print("Which book would you like to check out? (please enter the ID number) ");
 				chooseBook = input.nextInt();
+				
 				Checkout.checkoutBook(chooseBook, bookList, libraryCard);
 			} 
 			
@@ -45,8 +46,7 @@ public class LibraryTerminalApp {
 				System.out.print("Please enter an author: ");
 				input.nextLine();
 				String author = input.nextLine();
-
-				// still need to modify these methods to make them ignore case
+				
 				BookObject.authorSearch(author, bookList, chooseBook, input, libraryCard);
 				
 			} 
@@ -55,6 +55,7 @@ public class LibraryTerminalApp {
 				System.out.print("Please enter a title: ");
 				input.nextLine();
 				String title = input.nextLine();
+				
 				BookObject.titleSearch(title, bookList, chooseBook, input, libraryCard);
 
 			} 
@@ -64,25 +65,17 @@ public class LibraryTerminalApp {
 			}
 			
 			else {
-				System.out.println("Sorry! That is not a valid search option...");
-				// loop with a boolean?
+				System.out.println("Sorry! That is not a valid browsing option...");
 			}
 
 		} 
 		
-		else {
-			// let user return a book
-
-			// prompt user for borrowID aka library card
-
-			System.out.print("Please enter your library card number: ");
-			int returnUser = input.nextInt();
-						
-						
-						//calls method that lets the user view books they have checked out as well as return books
-						Checkout.displayBook(bookList, returnUser, input);
+		else {	
+					//calls method that lets the user view books they have checked out as well as return books
+					Checkout.displayBook(bookList, input);
 						
 				}
+		
 			//method that writes the changes back into the BookDataBase1.csv
 			BookObject.writeCSV(bookList);
 		}
