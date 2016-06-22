@@ -5,27 +5,33 @@ import java.util.Scanner;
 public class Checkout {
 
 	// method to checkout a book and change fields
-	public static void checkoutBook(int index, ArrayList<Book> bookArrayList, int libraryCard) {
+	public static void checkoutBook(ArrayList<Book> bookArrayList, int libraryCard, Scanner input) {
+		boolean checkingOut = true;
+		while (checkingOut) {
+			int index = Validator.getInt(input,
+					"Which book would you like to check out? (please enter the Index number) ", "Please try again");
 
-		for (int i = 0; i < bookArrayList.size(); i++) {
+			for (int i = 0; i < bookArrayList.size(); i++) {
 
-			Book b = bookArrayList.get(i);
-			if (b.getIndex() == (index)) {
-				if (b.getStatus().equals("Available")) {
-					b.setStatus("Checked Out");
-					LocalDate due = LocalDate.now();
-					b.setDue(due.plusDays(14));
-					b.setLibraryCard(libraryCard);
-					System.out
-							.println("You have successfully checked out \"" + b.getTitle() + "\" by " + b.getAuthor());
-					System.out.println("Your book is due on: " + b.getDue() + "\n"
-							+ "You will need your Library card to return your book. Don't forget your card number is: "
-							+ libraryCard);
+				Book b = bookArrayList.get(i);
+				if (b.getIndex() == (index)) {
+					if (b.getStatus().equals("Available")) {
+						b.setStatus("Checked Out");
+						LocalDate due = LocalDate.now();
+						b.setDue(due.plusDays(14));
+						b.setLibraryCard(libraryCard);
+						System.out.println(
+								"You have successfully checked out \"" + b.getTitle() + "\" by " + b.getAuthor());
+						System.out.println("Your book is due on: " + b.getDue() + "\n"
+								+ "You will need your Library card to return your book. Don't forget your card number is: "
+								+ libraryCard);
+					} else {
+						System.out.println("I'm sorry, this book is unavailable for checkout at this time!");
 
-				} else {
-					System.out.println("I'm sorry, this book is unavailable for checkout at this time!");
+					}
 				}
 			}
+			checkingOut = Validator.getYorN(input, "Do you want to try another checkout?");
 		}
 	}
 
@@ -36,8 +42,6 @@ public class Checkout {
 		int libraryCard = Validator.getInt(input,
 				"Please enter your library card number to " + "view what books you have checked out: ",
 				"Please try again.\n");
-		// System.out.print("Please enter your library card number: ");
-		// int libraryCard = input.nextInt();
 
 		// how many books does the user have checked out
 		for (int i = 0; i < bookArrayList.size(); i++) {
@@ -46,23 +50,22 @@ public class Checkout {
 				count++;
 			}
 		}
-
 		// if the user has any books checked out
 		if (count > 0) {
 			System.out.println("You have the following books checked out under your name: ");
 			for (int i = 0; i < bookArrayList.size(); i++) {
 				Book b = bookArrayList.get(i);
 				if (b.getlibraryCard() == (libraryCard)) {
-					System.out.println("\"" + b.getTitle() + "\"" + "\n" + "Number: " + b.getIndex());
+					System.out.format("%-12s%-30s%-30s%-12s", "INDEX #", "TITLE", "AUTHOR", "STATUS");
+					System.out.println("");
+					System.out.format("%-12d%-30s%-30s%-12s", b.getIndex(), b.getTitle(), b.getAuthor(), b.getStatus());
+					System.out.println("");
 				}
 			}
 			// prompt the user to return a book
 
 			int returnIndex = Validator.getInt(input, "Enter the number of the book you would like to return: ", 1, 12,
 					"Please enter a number\n");
-			// System.out.print("Enter the number of the book you would like to
-			// return: ");
-			// int returnIndex = input.nextInt();
 
 			// go through array list, find selected book, get library card and
 			// verify that it matches the users
@@ -71,7 +74,7 @@ public class Checkout {
 				// call method to set book status and card number back to
 				// default
 				Checkout.returnBook(bookArrayList, libraryCard, returnIndex);
-				boolean anotherBook = Validator.getYorN(input, "Would you like to return another book (Y/N)");
+				boolean anotherBook = Validator.getYorN(input, "Would you like to return another book? (Y/N)");
 				// System.out.print("Would you like to return another book?
 				// (Y/N) ");
 				// input.nextLine();
@@ -85,7 +88,6 @@ public class Checkout {
 				displayBook(bookArrayList, input);
 			}
 		}
-
 		// if the user does not have any books checked out or they enter an
 		// invalid card number
 		if (count == 0) {
@@ -99,7 +101,6 @@ public class Checkout {
 	public static void returnBook(ArrayList<Book> bookArrayList, int libraryCard, int index) {
 
 		for (int i = 0; i < bookArrayList.size(); i++) {
-
 			Book r = bookArrayList.get(i);
 			if (r.getIndex() == index) {
 				r.setStatus("Available");

@@ -22,7 +22,6 @@ public class Validator { // 3 options
 			} else {
 				System.out.println(response);
 				repeat = true;
-
 			}
 		}
 		return choice;
@@ -44,7 +43,7 @@ public class Validator { // 3 options
 				repeat = false;
 
 			} else {
-				System.out.println(response);
+				System.out.println(response + "\r");
 
 				continue;
 			}
@@ -65,7 +64,6 @@ public class Validator { // 3 options
 				repeat = true;
 				break;
 			} else if (answerRepeat.toLowerCase().contains("n")) {
-
 				repeat = false;
 				break;
 			} else {
@@ -73,6 +71,7 @@ public class Validator { // 3 options
 				continue;
 			}
 		}
+
 		return repeat;
 	}
 
@@ -91,6 +90,7 @@ public class Validator { // 3 options
 			} else if (answerRepeat.toLowerCase().contains("n")) {
 				System.out.println(response);
 				repeat = false;
+
 				break;
 			} else {
 				System.out.println("Invalid Answer, Please Try Again.\r");
@@ -135,28 +135,33 @@ public class Validator { // 3 options
 		return s;
 	}
 
-	// Get an int, takes a prompt, gives response and Min Max
-	// public static int getInt(Scanner scan, String prompt, String response,
-	// int min, int max) {
-	// int i = 0;
-	// boolean isValid = false;
-	// while (isValid == false) {
-	// System.out.print(prompt);
-	// if (scan.hasNextInt()) { // this is the key scanner method
-	// i = scan.nextInt();
-	//
-	// if ((i < min) || (i > max))
-	// System.out.println("Error! Number must be between " + min + " and " +
-	// max);
-	// isValid = true;
-	// } else {
-	// System.out.println(response);
-	//
-	// }
-	// scan.nextLine(); // discard any other data entered on the line
-	// }
-	// return i;
-	// }
+	// Get an int, takes a prompt, and Min Max
+	public static int getInt(Scanner scan, String prompt, int min, int max) {
+		int i = 0;
+		boolean isValid = false;
+		while (isValid == false) {
+			System.out.print(prompt);
+			if (scan.hasNextInt()) { // this is the key scanner method
+				i = scan.nextInt();
+				isValid = true;
+				if ((i < min) || (i > max)) {
+					System.out.println("Error! Number must be between " + min + " and " + max);
+
+					isValid = false;
+				}
+				scan.nextLine(); // discard any other data entered on the line
+			} else {
+				isValid = false;
+
+				System.out.println("");
+
+			}
+
+			System.out.println("");
+		}
+		return i;
+	}
+
 	// // Get an int, takes a prompt, gives response
 	public static int getInt(Scanner scan, String prompt, String response) {
 		int i = 0;
@@ -168,9 +173,11 @@ public class Validator { // 3 options
 				isValid = true;
 			} else {
 				System.out.println(response);
+				isValid = false;
 
 			}
-			scan.nextLine(); // discard any other data entered on the line
+			scan.nextLine(); // discard any other data entered on the
+			// line
 		}
 		return i;
 	}
@@ -185,7 +192,9 @@ public class Validator { // 3 options
 				System.out.println("Error! Number must be between " + min + " and " + max);
 			else
 				isValid = true;
+			// scan.nextLine(); // discard any other data entered on the line
 		}
+
 		return i;
 	}
 

@@ -1,12 +1,7 @@
 import java.io.BufferedReader;
-import java.io.BufferedWriter;
 import java.io.File;
-import java.io.FileOutputStream;
 import java.io.FileReader;
-import java.io.FileWriter;
 import java.io.IOException;
-import java.io.ObjectOutputStream;
-import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -17,7 +12,7 @@ public class BookObject {
 		ArrayList<Book> bookArrayList = new ArrayList<Book>(); // Create Array
 
 		try {
-			String filePath = new File("BookDataBase1").getAbsolutePath();
+			// String filePath = new File("BookDataBase1").getAbsolutePath();
 			// System.out.println(filePath);
 
 			FileReader r = new FileReader("BookDataBase1.csv");
@@ -33,12 +28,11 @@ public class BookObject {
 
 			while (line != null) { // do not want to read a blank line.
 				String[] ar = line.split(",");
-				// can not seem to make the subject number
-				// which comes in as a string into an int to go into object
-				String subj = ar[3];
-				int sub = Integer.parseInt(subj);
-				String borrower = ar[5];
-				int bID = Integer.parseInt(borrower);
+
+				String s = ar[3]; // parsing the strings where we use ints
+				int sub = Integer.parseInt(s);
+				String b = ar[5];
+				int bID = Integer.parseInt(b);
 				String index = ar[0];
 				int indexID = Integer.parseInt(index);
 				Book book = new Book(indexID, ar[1], ar[2], sub, ar[4], bID); // creating
@@ -77,31 +71,40 @@ public class BookObject {
 	}
 
 	// Author Search
-	public static void authorSearch(String author, ArrayList<Book> bookArrayList, int chooseBook, Scanner input,
-			int libraryCard) {
+
+	public static void authorSearch(ArrayList<Book> bookArrayList, Scanner input, int libraryCard) {
+		System.out.print("Please enter an author: ");
+
+		String author = input.nextLine();
 		System.out.format("%-12s%-30s%-30s%-12s", "INDEX #", "TITLE", "AUTHOR", "STATUS");
 		System.out.println("");
 		int repeat = 0;
 		for (int i = 0; i < bookArrayList.size(); i++) {
 			Book b = bookArrayList.get(i);
 			if (((b.getAuthor()).toLowerCase()).contains(author)) {
-
+				// change author to lowercase and see if it is contained in
+				// author field for each book
 				System.out.format("%-12d%-30s%-30s%-12s", b.getIndex(), b.getTitle(), b.getAuthor(), b.getStatus());
 				System.out.println("");
 				repeat = 1;
-			}
-		}
+			} // repeat =1 is necessary to see if anything was printed out
+		} // there was a problem if the last line was blank looking like it was
+			// all a blank
 		if (repeat == 0) {
-			System.out.println("\rSorry your entry returned zero results.");
+
+			System.out.println("\rSorry your entry returned zero results." + "\n"
+					+ "To view a list of our selections, press \"enter\" ");
+			input.nextLine();
+			returnAll(bookArrayList, libraryCard, input);
+			Checkout.checkoutBook(bookArrayList, libraryCard, input);
 		} else {
-			System.out.print("Which book would you like to check out? (please enter the ID number) ");
-			chooseBook = input.nextInt();
-			Checkout.checkoutBook(chooseBook, bookArrayList, libraryCard);
+			Checkout.checkoutBook(bookArrayList, libraryCard, input);
+
 		}
 	}
 
 	// Return All
-	public static void returnAll(ArrayList<Book> bookArrayList) {
+	public static void returnAll(ArrayList<Book> bookArrayList, int libraryCard, Scanner input) {
 		System.out.format("%-12s%-30s%-30s%-12s", "INDEX #", "TITLE", "AUTHOR", "STATUS");
 		System.out.println("");
 		for (int i = 0; i < bookArrayList.size(); i++) {
@@ -109,6 +112,7 @@ public class BookObject {
 			System.out.format("%-12d%-30s%-30s%-12s", b.getIndex(), b.getTitle(), b.getAuthor(), b.getStatus());
 			System.out.println("");
 		}
+		Checkout.checkoutBook(bookArrayList, libraryCard, input);
 	}
 
 	// setting 1 = History
@@ -116,6 +120,7 @@ public class BookObject {
 	// 3 = SciFi/Fantasy/Horror
 	// 4 = Historical Fiction
 	public static void subjectSearch(Scanner input, ArrayList<Book> bookArrayList, int chooseBook, int libraryCard) {
+		System.out.println("");
 		System.out.println("The Subject options are:");
 		System.out.println("1. History");
 		System.out.println("2. Mystery/Thriller");
@@ -132,15 +137,15 @@ public class BookObject {
 				System.out.println("");
 			}
 		}
-		System.out.print("Which book would you like to check out? (please enter the ID number) ");
-		chooseBook = input.nextInt();
-		Checkout.checkoutBook(chooseBook, bookArrayList, libraryCard);
-
+		Checkout.checkoutBook(bookArrayList, libraryCard, input);
 	}
 
 	// Title Search
-	public static void titleSearch(String title, ArrayList<Book> bookArrayList, int chooseBook, Scanner input,
-			int libraryCard) {
+
+	public static void titleSearch(ArrayList<Book> bookArrayList, int chooseBook, Scanner input, int libraryCard) {
+		System.out.print("Please enter a title: ");
+
+		String title = input.nextLine();
 		System.out.format("%-12s%-30s%-30s%-12s", "INDEX #", "TITLE", "AUTHOR", "STATUS");
 		System.out.println("");
 		int repeat = 0;
@@ -153,11 +158,15 @@ public class BookObject {
 			}
 		}
 		if (repeat == 0) {
-			System.out.println("\rSorry your entry returned zero results.");
+
+			System.out.println("\rSorry your entry returned zero results." + "\n"
+					+ "To view a list of our selections, press \"enter\" ");
+			input.nextLine();
+			returnAll(bookArrayList, libraryCard, input);
+			Checkout.checkoutBook(bookArrayList, libraryCard, input);
 		} else {
-			System.out.print("Which book would you like to check out? (please enter the ID number) ");
-			chooseBook = input.nextInt();
-			Checkout.checkoutBook(chooseBook, bookArrayList, libraryCard);
+			Checkout.checkoutBook(bookArrayList, libraryCard, input);
+
 		}
 	}
 }
