@@ -23,7 +23,7 @@ public class LibraryTerminalApp {
 			ArrayList<Book> bookList = BookObject.instatiateArray();
 
 			// ask user to checkout or return a book
-			System.out.println("Welcome to the Library!");
+			System.out.println("Welcome to the Grant Chirpus Memorial Library!");
 
 			action = Validator.getChoice(input, "Are you here to browse or return a book? (browse / return) : ",
 					"Browse", "Return", "Sorry, you must choose browse or return");

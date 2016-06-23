@@ -81,7 +81,7 @@ public class BookObject {
 		int repeat = 0;
 		for (int i = 0; i < bookArrayList.size(); i++) {
 			Book b = bookArrayList.get(i);
-			if (((b.getAuthor()).toLowerCase()).contains(author)) {
+			if (((b.getAuthor()).toLowerCase()).contains(author.toLowerCase())) {
 				// change author to lowercase and see if it is contained in
 				// author field for each book
 				System.out.format("%-12d%-30s%-30s%-12s", b.getIndex(), b.getTitle(), b.getAuthor(), b.getStatus());
@@ -153,7 +153,7 @@ public class BookObject {
 		int repeat = 0;
 		for (int i = 0; i < bookArrayList.size(); i++) {
 			Book b = bookArrayList.get(i);
-			if (((b.getTitle()).toLowerCase()).contains(title)) {
+			if (((b.getTitle()).toLowerCase()).contains(title.toLowerCase())) {
 				System.out.format("%-12d%-30s%-30s%-12s", b.getIndex(), b.getTitle(), b.getAuthor(), b.getStatus());
 				System.out.println("");
 				repeat = 1;
